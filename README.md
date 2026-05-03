@@ -50,9 +50,9 @@ Foodie/
 ### 💻 Desktop View
 
 <img src="screenshots/home-page.png" width="45%">
-<img src="screenshots/menu-section.png" width="45%">
-
 <img src="screenshots/services.png" width="45%">
+
+<img src="screenshots/menu-section.png" width="45%">
 <img src="screenshots/reviews.png" width="45%">
 
 <img src="screenshots/offer-section.png" width="45%">
@@ -63,7 +63,7 @@ Foodie/
 ### 🛒 Features & Functionality
 
 <img src="screenshots/menu-searchbar.png" width="45%">
-<img src="screenshots/empty-cart.png" width="45%">
+<img src="screenshots/install-app.png" width="45%">
 
 <img src="screenshots/checkout.png" width="45%">
 <img src="screenshots/order-confirmation.png" width="45%">
@@ -77,6 +77,7 @@ Foodie/
 
 <img src="screenshots/mobile-view.png" width="45%">
 <img src="screenshots/hamburger.png" width="45%">
+<img src="screenshots/empty-cart.png" width="45%">
 
 ---
 
