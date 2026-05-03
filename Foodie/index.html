@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foodie Website</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+
+  <body>
+    <div id="main-content">
+
+      <!--HEADER PART-->
+
+      <header>
+        <nav class="navbar flex between wrapper">
+          <a href="#" class="logo">Foodie.</a>
+
+          <!--DESKTOP MENU-->
+          <ul class="navlist flex gap-3">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#menu" class="nav-link">Menu</a></li>
+            <li><a href="#reviews" class="nav-link">Reviews</a></li>
+            <li><a href="#about" class="nav-link">About Us</a></li>
+            <li><a href="#offers" class="nav-link">Offers</a></li>
+            <li><a href="#contact" class="nav-link">Contacts</a></li>
+          </ul>
+
+          <div class="desktop-action flex gap-2">
+            <a href="#" class="cart-icon">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="cart-value">0</span>
+            </a>
+
+            <button class="btn" id="signInBtn" type="button">
+              Sign in &nbsp;
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+            <button
+              class="hamburger"
+              id="hamburger"
+              type="button"
+              aria-label="Open menu">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+
+          <!--MOBILE MENU-->
+          <ul class="mobile-menu" id="mobileMenu">
+              <span class="close-btn"
+              id="closeMenu"
+              aria-label="Close menu"
+              role="button"
+              >✖</span> 
+            
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#contact">Contacts</a></li>
+            <li>
+              <button class="btn signInMobile" type="button">
+                Sign in &nbsp;
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- LOGIN OVERLAY -->
+      <div id="loginOverlay" class="login-overlay"></div>
+
+      <!-- LOGIN MODAL -->
+      <div id="loginModal" class="login-modal">
+        <h3>Sign In</h3>
+
+        <form id="loginForm">
+          <input type="text" id="loginName" placeholder="Your Name" required />
+
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="Email Address"
+            required
+          />
+
+          <div class="login-actions">
+            <button type="submit" class="btn login-btn">Login</button>
+            <button type="button" class="btn cancel-btn" onclick="closeLogin()">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- CART OVERLAY -->
+      <div class="cart-overlay" id="cartOverlay"></div>
+
+      <!-- CART PANEL -->
+      <div class="cart-panel" id="cartPanel">
+        <h3>Your Cart</h3>
+
+        <div class="cart-items">
+          <p class="empty-cart">Your cart is empty</p>
+        </div>
+
+        <div class="cart-footer">
+          <div class="cart-total">
+            <span>Total:</span>
+            <strong>₹0</strong>
+          </div>
+
+          <div class="cart-actions">
+            <button class="btn dark-btn" onclick="closeCart()">Close</button>
+            <button class="btn" onclick="openCheckout()">Check out</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKOUT MODAL -->
+      <div class="checkout-overlay" id="checkoutOverlay"></div>
+
+      <div class="checkout-modal" id="checkoutModal">
+        <h3>Checkout</h3>
+
+        <div class="checkout-items" id="checkoutItems"></div>
+
+        <div class="checkout-total">
+          <strong>Total:</strong>
+          <span id="checkoutTotal">₹0</span>
+        </div>
+
+        <form id="checkoutForm">
+          <input type="text" placeholder="Full Name" required />
+          <input type="text" placeholder="Delivery Address" required />
+          <input type="tel" placeholder="Phone Number" required />
+
+          <select class="payment-select" required>
+            <option value="">Select Payment</option>
+            <option>Cash on Delivery</option>
+            <option>UPI</option>
+            <option>Debit / Credit Card</option>
+          </select>
+
+          <div class="checkout-actions">
+            <button
+              type="button"
+              class="btn dark-btn"
+              onclick="closeCheckout()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn">Place Order</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="successOverlay" class="checkout-overlay"></div>
+      <!-- ORDER SUCCESS MODAL -->
+      <div class="success-modal" id="successModal">
+        <div class="success-icon">
+          <i class="fa-solid fa-check"></i>
+
+          <!-- LEFT (5) -->
+          <span class="spark l1"></span>
+          <span class="spark l2"></span>
+          <span class="spark l3"></span>
+          <span class="spark l4"></span>
+          <span class="spark l5"></span>
+
+          <!-- RIGHT (5) -->
+          <span class="spark r1"></span>
+          <span class="spark r2"></span>
+          <span class="spark r3"></span>
+          <span class="spark r4"></span>
+          <span class="spark r5"></span>
+        </div>
+        <h3>Order Placed Successfully!</h3>
+        <p>Sit back & relax, your food is on the way 💛</p>
+
+        <button class="btn success-btn" onclick="viewOrder()">
+          View Order Details →
+        </button>
+      </div>
+
+      <!-- SECTIONS PART -->
+      <main>
+        <section id="home">
+          <div class="hero-section flex wrapper gap-4">
+            <div class="content">
+              <h1>
+                Enjoy Your Delicious
+                <span>Food</span>
+              </h1>
+              <p class="para">
+                We will fill your tummy with Delicious<br />food with fast
+                delivery.
+              </p>
+              <div class="flex gap-2">
+                <a href="#menu" class="btn" onclick="handleOrderNow(event)">
+                  Order now
+                </a>
+
+                <!-- WhatsApp -->
+                <a
+                  href="https://wa.me/919398238702"
+                  target="_blank"
+                  class="social-icon whatsapp-icon"
+                  aria-label="WhatsApp"
+                >
+                  <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <!-- Twitter / X -->
+                <a
+                  href="https://twitter.com/YOUR_TWITTER_USERNAME"
+                  target="_blank"
+                  class="social-icon"
+                  aria-label="Twitter"
+                >
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <!-- Instagram -->
+                <a
+                  href="https://www.instagram.com/YOUR_INSTAGRAM_USERNAME/"
+                  target="_blank"
+                  class="social-icon"
+                  aria-label="Instagram"
+                >
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <!-- Facebook -->
+                <a
+                  href="https://www.facebook.com/YOUR_FACEBOOK_PROFILE"
+                  target="_blank"
+                  class="social-icon"
+                  aria-label="Facebook"
+                >
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <!-- Gmail (FIXED ✅) -->
+                <a
+                  href="mailto:meghanaparadeshi@gmail.com"
+                  class="social-icon"
+                  aria-label="Gmail"
+                >
+                  <i class="fa-brands fa-google-plus-g"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="image-container">
+              <img src="images/delivery-boy.png" alt="Food Delivery Boy" />
+            </div>
+          </div>
+        </section>
+
+        <section id="services">
+          <div class="wrapper p-top">
+            <div class="text-center">
+              <h5>Our Services</h5>
+              <h2>How does it work?</h2>
+            </div>
+            <div class="flex text-center mt-4 gap-4">
+              <div class="service-card">
+                <div class="images-container">
+                  <img src="images/easy-to-order.png" alt="Easy to Order" />
+                </div>
+                <h3>Easy to order</h3>
+                <p>You only need a few steps in ordering food.</p>
+              </div>
+
+              <div class="service-card">
+                <div class="images-container">
+                  <img src="images/fast-delivery.png" alt="Fast Delivery" />
+                </div>
+                <h3>Fast delivery</h3>
+                <p>Delivery that is always ontime even faster.</p>
+              </div>
+
+              <div class="service-card">
+                <div class="images-container">
+                  <img src="images/best-quality.png" alt="Best Quality" />
+                </div>
+                <h3>Best Quality</h3>
+                <p>Not only fast for us in quality is also number one.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="menu">
+          <div class="wrapper p-top">
+            <div class="text-center">
+              <h5>Our Menu</h5>
+              <h2>The Most Popular</h2>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search food..."
+                class="search-bar"
+              />
+              <p id="noResults" class="no-results">No items found 😔</p>
+            </div>
+
+            <div class="card-list flex text-center mt-4 gap-3">
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/burger.png" alt="Double Beef Burger" />
+                </div>
+                <h4>Double Beef Burger</h4>
+                <h4 class="price">₹200</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Double Beef Burger"
+                  data-price="200"
+                  data-img="images/burger.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/pizza.png" alt="Veggie Pizza" />
+                </div>
+                <h4>Veggie Pizza</h4>
+                <h4 class="price">₹300</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Veggie Pizza"
+                  data-price="300"
+                  data-img="images/pizza.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/fried-chicken.png" alt="Fried Chicken" />
+                </div>
+                <h4>Fried Chicken</h4>
+                <h4 class="price">₹350</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Fried Chicken"
+                  data-price="350"
+                  data-img="images/fried-chicken.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/chicken-roll.png" alt="Chicken Roll" />
+                </div>
+                <h4>Chicken Roll</h4>
+                <h4 class="price">₹250</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Chicken Roll"
+                  data-price="250"
+                  data-img="images/chicken-roll.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/sandwich.png" alt="Sub Sandwich" />
+                </div>
+                <h4>Sub Sandwich</h4>
+                <h4 class="price">₹150</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Sub Sandwich"
+                  data-price="150"
+                  data-img="images/sandwich.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/lasagna.png" alt="Chicken Lasagna" />
+                </div>
+                <h4>Chicken Lasagna</h4>
+                <h4 class="price">₹250</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Chicken Lasagna"
+                  data-price="250"
+                  data-img="images/lasagna.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/spaghetti.png" alt="Italian Spaghetti" />
+                </div>
+                <h4>Italian Spaghetti</h4>
+                <h4 class="price">₹180</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Italian Spaghetti"
+                  data-price="180"
+                  data-img="images/spaghetti.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+
+              <div class="order-card">
+                <div class="card-image">
+                  <img src="images/spring-roll.png" alt="Spring Roll" />
+                </div>
+                <h4>Spring Roll</h4>
+                <h4 class="price">₹230</h4>
+                <a
+                  href="#"
+                  class="btn add-to-cart"
+                  data-name="Spring Roll"
+                  data-price="230"
+                  data-img="images/spring-roll.png"
+                >
+                  Add to cart
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="reviews" class="reviews-section">
+          <div class="wrapper flex gap-4 reviews-container">
+            <!-- LEFT IMAGE -->
+            <div class="review-image">
+              <img
+                src="images/delivery-boy-with-phone.png"
+                alt="Delivery Guy"
+              />
+            </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="review-content">
+              <h5>Our Reviews</h5>
+              <h2>What They Say?</h2>
+
+              <div class="review-card">
+                <div class="user">
+                  <img src="https://i.pravatar.cc/100?img=32" alt="User" />
+
+                  <div class="user-info">
+                    <h4>Olivia Smith</h4>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                </div>
+
+                <p id="review">
+                  Delicious dishes, cozy ambiance, and exceptional service. A
+                  must-visit for food lovers seeking bold flavors and
+                  unforgettable dining experiences.
+                </p>
+              </div>
+
+              <div class="review-actions">
+                <button onclick="prevReview()">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button onclick="nextReview()">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="app-section">
+          <div class="wrapper app-container">
+            <!-- LEFT : MOBILE IMAGE -->
+            <div class="app-image">
+              <img src="images/mobile-app.png" alt="Food App" />
+            </div>
+
+            <!-- RIGHT : CONTENT -->
+            <div class="app-content">
+              <h5>Our Application</h5>
+              <h2>Simple Way To<br />Order Your Food</h2>
+
+              <p>
+                Discover food wherever and whenever<br />
+                and get your food delivery quickly.
+              </p>
+
+              <button
+                class="btn"
+                id="installBtn"
+                onclick="event.preventDefault()"
+              >
+                Get the App
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="offers" class="offers-section">
+          <div class="wrapper offers-container">
+            <h5>Special Offers</h5>
+            <h2>Today’s Deals 🔥</h2>
+
+            <div class="offers-list">
+              <div class="offer-card">
+                <h3>Buy 1 Get 1 Free</h3>
+                <span class="emoji">🍕 + 🍕</span>
+                <p>On all pizzas this weekend</p>
+                <a href="#menu" class="btn">Order Now →</a>
+              </div>
+
+              <div class="offer-card">
+                <h3>Free Delivery</h3>
+                <span class="emoji">🚚</span>
+                <p>On orders above ₹299</p>
+                <a href="#menu" class="btn">Grab Deal →</a>
+              </div>
+
+              <div class="offer-card">
+                <h3>20% OFF</h3>
+                <span class="emoji">🎉</span>
+                <p>On combo meals</p>
+                <a href="#menu" class="btn">Order Now →</a>
+              </div>
+            </div>
+
+            <p class="offer-note">Hurry! Limited time offers ⏳</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER PART -->
+      <footer id="contact" class="footer">
+        <div class="wrapper footer-container">
+          <!-- BRAND -->
+          <div class="footer-brand">
+            <h3 class="logo">Foodie.</h3>
+            <p>
+              We will fill your tummy<br />
+              with delicious food with fast delivery.
+            </p>
+
+            <div class="footer-contact">
+              <p class="footer-phone">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+919398238702" class="phone-link">
+                  +91 93982 38702
+                </a>
+              </p>
+
+              <p>
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:meghanaparadeshi@gmail.com">
+                  meghanaparadeshi@gmail.com
+                </a>
+              </p>
+            </div>
+
+            <div class="footer-social">
+              <a href="https://wa.me/919398238702" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="https://twitter.com/">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a href="https://instagram.com/">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://facebook.com/">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="mailto:meghanaparadeshi@gmail.com">
+                <i class="fa-brands fa-google-plus-g"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- MENU -->
+          <div class="footer-links">
+            <h4>Our Menu</h4>
+            <a href="#">Special</a>
+            <a href="#">Popular</a>
+            <a href="#">Categories</a>
+          </div>
+
+          <!-- COMPANY -->
+          <div class="footer-links">
+            <h4>Company</h4>
+            <a href="#">Why Foodie</a>
+            <a href="#">Partner with us</a>
+            <a href="#">About us</a>
+            <a href="#">FAQ’s</a>
+          </div>
+
+          <!-- SUPPORT -->
+          <div class="footer-links">
+            <h4>Support</h4>
+            <a href="#">Account</a>
+            <a href="#">Support center</a>
+            <a href="#">Feedback</a>
+            <a href="#">Contacts</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- TRACK ORDER (HIDDEN BY DEFAULT) -->
+    <section id="track-order" class="track-section wrapper hidden">
+      <h5>Order Tracking</h5>
+      <h2>Track Your Order 🛵</h2>
+
+      <div class="track-card">
+        <!-- HEADER -->
+        <div class="track-header">
+          <p><strong>Order ID:</strong> #FD12345</p>
+          <p>
+            <strong>Estimated Time:</strong> <span id="eta-time">30 mins</span>
+          </p>
+        </div>
+
+        <!-- PROGRESS LINE -->
+        <div class="timeline">
+          <div class="step active">
+            <div class="circle">📦</div>
+            <div class="content">
+              <h4>Ordered</h4>
+              <span class="time">Just now</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="circle">✅</div>
+            <div class="content">
+              <h4>Confirmed</h4>
+              <span class="time">--</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="circle">🍳</div>
+            <div class="content">
+              <h4>Cooking</h4>
+              <span class="time">--</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="circle">🛵</div>
+            <div class="content">
+              <h4>Out for Delivery</h4>
+              <span class="time">--</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="circle">🎉</div>
+            <div class="content">
+              <h4>Delivered</h4>
+              <span class="time">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ETA -->
+        <p id="eta">Arriving in 30 mins ⏱️</p>
+
+        <!-- ORDER SUMMARY -->
+        <div class="track-summary">
+          <h3>Your Order</h3>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="track-actions">
+          <button id="receivedBtn" class="btn">Confirm Received</button>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+
+    <div id="headerMessage" class="header-message"></div>
+
+    <div id="cartToast" class="cart-toast"></div>
+  </body>
+</html>
