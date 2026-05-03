@@ -108,16 +108,9 @@ Foodie/
    ```
 
 ---
+## ⚛️ Future Upgrade
 
-## 🌐 Future Improvements
-
-- 🌙 Dark Mode support  
-- 💾 Save cart using localStorage  
-- 🔐 User authentication system  
-- 💳 Payment integration (Razorpay / Stripe)  
-- ⚙️ Backend integration (Node.js / Firebase)
-- 🔗 React Version (Coming Soon)
-- ⚛️ Rebuild using React.js with state management and reusable components
+A more advanced version of this project will be developed using React.js, focusing on enhanced features, improved performance, and scalable component-based architecture.
 
 ---
 
