@@ -111,11 +111,13 @@ Foodie/
 
 ## 🌐 Future Improvements
 
-* 🌙 Dark Mode
-* 💾 Save cart using localStorage
-* 🔐 User authentication
-* 💳 Payment integration
-* 🌍 Backend integration (Node.js / Firebase)
+- 🌙 Dark Mode support  
+- 💾 Save cart using localStorage  
+- 🔐 User authentication system  
+- 💳 Payment integration (Razorpay / Stripe)  
+- ⚙️ Backend integration (Node.js / Firebase)
+- 🔗 React Version (Coming Soon)
+- ⚛️ Rebuild using React.js with state management and reusable components
 
 ---
 
